@@ -1,0 +1,53 @@
+{
+  "name": "grown-up-english-vocabulary-learning",
+  "version": "0.0.1",
+  "description": "Learn english words with proper context like a grown-up!",
+  "author": "Vladimir Mitin <vmitin.dev@gmail.com>",
+  "engineStrict": true,
+  "scripts": {
+    "clean": "rimraf coverage build tmp",
+    "build": "tsc",
+    "watch": "tsc -w",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "words-supplier": "node build/src/work-supplier/index.js"
+  },
+  "engines": {
+    "node": ">= 8.9.0"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ],
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(ts|js)x?$",
+    "coverageDirectory": "coverage",
+    "collectCoverageFrom": [
+      "src/**/*.{ts,tsx,js,jsx}",
+      "!src/**/*.d.ts"
+    ]
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/jest": "~22.2.3",
+    "@types/lodash": "^4.14.110",
+    "@types/moment": "^2.13.0",
+    "@types/node": "~8.10.18",
+    "axios": "^0.18.0",
+    "jest": "~23.1.0",
+    "lodash": "^4.17.10",
+    "rimraf": "~2.6.2",
+    "ts-jest": "~22.4.6",
+    "tslint": "~5.10.0",
+    "tsutils": "~2.27.1",
+    "typescript": "~2.9.1"
+  }
+}
