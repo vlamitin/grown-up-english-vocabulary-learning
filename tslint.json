@@ -2,11 +2,8 @@
   "extends": "tslint:latest",
   "rules": {
     "typedef": [true, "call-signature",
-      "arrow-call-signature",
       "parameter",
-      "arrow-parameter",
       "property-declaration",
-      "variable-declaration",
       "member-variable-declaration",
       "array-destructuring"
     ],

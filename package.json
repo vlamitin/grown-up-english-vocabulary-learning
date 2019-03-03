@@ -10,7 +10,8 @@
     "watch": "tsc -w",
     "test": "jest",
     "test:watch": "jest --watch",
-    "words-supplier": "node build/src/work-supplier/index.js"
+    "words-supplier": "node build/src/work-supplier/index.js",
+    "cli": "node build/src/cli-view/index.js"
   },
   "engines": {
     "node": ">= 8.9.0"
@@ -35,8 +36,12 @@
       "!src/**/*.d.ts"
     ]
   },
-  "dependencies": {},
+  "dependencies": {
+    "commander": "^2.19.0",
+    "inquirer": "^6.2.2"
+  },
   "devDependencies": {
+    "@types/inquirer": "0.0.44",
     "@types/jest": "~22.2.3",
     "@types/lodash": "^4.14.110",
     "@types/moment": "^2.13.0",

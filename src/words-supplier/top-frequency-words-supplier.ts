@@ -1,5 +1,5 @@
-import axios, { AxiosResponse } from 'axios'
-import path from 'path'
+import * as path from 'path'
+import * as fs from 'fs'
 import { SortMethod } from './index'
 
 export interface WordsSource {
@@ -13,8 +13,11 @@ const WORDS_PATH: string = path.resolve(__dirname, '../../../resources/top-10000
 
 class TopFrequencyWordsSupplier {
     supply = async (): Promise<WordsSource> => {
-        const source: AxiosResponse<WordsSource> = await axios.get<WordsSource>(WORDS_PATH)
-        return source.data
+        return new Promise<WordsSource>(resolve => {
+            fs.readFile(WORDS_PATH, (err, data) => {
+                return resolve(JSON.parse(String(data)) as WordsSource)
+            })
+        })
     }
 }
 
