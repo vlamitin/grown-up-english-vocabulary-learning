@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 import { showWords } from './show-words'
+import { translate } from './translate-text'
 
 const usage: string =
 `    usage:          "npm run cli -- <<command>> ...args"
@@ -10,6 +11,7 @@ const usage: string =
     commands:
         "help":         show usage info
         "show-words":   show words
+        "translate":    translate text
 `
 
 function parseCliArgs(): Promise<void> | void {
@@ -34,6 +36,11 @@ function parseCliArgs(): Promise<void> | void {
             return process.exit(0)
         case 'show-words':
             return showWords({
+                ...argv,
+                _: undefined
+            })
+        case 'translate':
+            return translate({
                 ...argv,
                 _: undefined
             })
