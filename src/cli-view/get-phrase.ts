@@ -1,6 +1,7 @@
 import { isNil } from 'lodash'
 import { config } from '../config/config'
-import { Phrase, FrazeItPhrasesService } from '../phrases/fraze-it'
+import { FrazeItPhrasesService } from '../phrases/fraze-it'
+import { Phrase } from '../phrases/phrase-supplier'
 
 const usage: string =
     `usage:              "npm run cli -- get-phrase ...args"

@@ -1,11 +1,7 @@
 import axios, { AxiosResponse } from 'axios'
+import { Phrase, PhraseSupplier } from './phrase-supplier'
 
-export interface Phrase {
-    phrase: string
-    src: string
-}
-
-export class FrazeItPhrasesService {
+export class FrazeItPhrasesService implements PhraseSupplier {
 
     apiKey: string
 

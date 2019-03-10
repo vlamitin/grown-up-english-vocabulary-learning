@@ -3,6 +3,7 @@
 import { showWords } from './show-words'
 import { translate } from './translate-text'
 import { getPhrase } from './get-phrase'
+import { LearnNew } from './learn-new'
 
 const usage: string =
 `    usage:          "npm run cli -- <<command>> ...args"
@@ -13,7 +14,8 @@ const usage: string =
         "help":         show usage info
         "show-words":   show words
         "translate":    translate text
-        "get-phrase":    get phrase with usage of given text
+        "get-phrase":   get phrase with usage of given text
+        "learn-new":    learn new words
 `
 
 function parseCliArgs(): Promise<void> | void {
@@ -51,6 +53,8 @@ function parseCliArgs(): Promise<void> | void {
                 ...argv,
                 _: undefined
             })
+        case 'learn-new':
+            return new LearnNew().start()
     }
 }
 

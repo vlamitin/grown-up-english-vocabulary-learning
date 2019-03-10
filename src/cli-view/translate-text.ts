@@ -1,6 +1,7 @@
 import { isNil } from 'lodash'
 import { config } from '../config/config'
-import { TranslationResult, YandexTranslateService } from '../words-translator/yandex-translate'
+import { YandexTranslateService } from '../words-translator/yandex-translate'
+import { TranslationResult } from '../words-translator/translator'
 
 const usage: string =
     `    usage:          "npm run cli -- translate ...args"
