@@ -5,6 +5,7 @@ import { FrazeItPhrasesService } from '../phrases/fraze-it'
 import { YandexTranslateService } from '../words-translator/yandex-translate'
 import { TranslationResult, Translator } from '../words-translator/translator'
 import { Phrase, PhraseSupplier } from '../phrases/phrase-supplier'
+import { DictionaryDbConnector } from '../persistance/dictionary-db-connector'
 
 interface FromAnswer {
     from: number
@@ -12,6 +13,10 @@ interface FromAnswer {
 
 interface PhraseAnswer {
     phrase: string
+}
+
+interface ContinueAnswer {
+    continue: boolean
 }
 
 interface TranslateAnswer {
@@ -28,6 +33,7 @@ export class LearnNew {
     private words: string[]
     private phraseSupplier: PhraseSupplier
     private translator: Translator
+    private dictionaryDb: DictionaryDbConnector
 
     start = async (): Promise<void> => {
         const fromAnswer: FromAnswer = await inquirer.prompt<FromAnswer>({
@@ -42,12 +48,17 @@ export class LearnNew {
         await config.load()
         this.phraseSupplier = new FrazeItPhrasesService(config.frazeItApiKey)
         this.translator = new YandexTranslateService(config.yandexApiKey)
+        this.dictionaryDb = new DictionaryDbConnector()
 
         this.learnNextWord()
     }
 
     learnNextWord = async (): Promise<void> => {
-        const phrases: Phrase[] = await this.phraseSupplier.getPhrases(this.words[this.currentWordIndex++])
+        const word: string = this.words[this.currentWordIndex++]
+
+        console.log('learning word: ', word)
+
+        const phrases: Phrase[] = await this.phraseSupplier.getPhrases(word)
 
         const phraseAnswer: PhraseAnswer = await inquirer.prompt<PhraseAnswer>({
             type: 'rawlist',
@@ -58,8 +69,25 @@ export class LearnNew {
 
         const userTranslation: string = await this.getUserTranslationOfPhrase(phraseAnswer.phrase)
 
-        // TODO записывать в resistanse layer и учить следующее слово
-        console.log('tr: ', userTranslation)
+        await this.dictionaryDb.add({
+            word,
+            phrase: phraseAnswer.phrase,
+            translation: userTranslation
+        })
+
+        const continueAnswer: ContinueAnswer = await inquirer.prompt<ContinueAnswer>({
+            type: 'confirm',
+            name: 'continue',
+            message: 'Translation added. Want to learn next word' + ` "${this.words[this.currentWordIndex]}"?`,
+            default: true
+        })
+
+        if (continueAnswer.continue) {
+            this.learnNextWord()
+        } else {
+            return process.exit(0)
+        }
+
     }
 
     getUserTranslationOfPhrase = async (phrase: string): Promise<string> => {
