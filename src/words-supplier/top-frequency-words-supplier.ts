@@ -1,6 +1,10 @@
 import * as path from 'path'
 import * as fs from 'fs'
-import { SortMethod } from './index'
+
+export enum SortMethod {
+    FREQUENCY = 'frequency',
+    ALPHABETICAL = 'alphabetical'
+}
 
 export interface WordsSource {
     source: string

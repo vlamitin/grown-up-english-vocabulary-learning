@@ -38,12 +38,14 @@
   },
   "dependencies": {
     "commander": "^2.19.0",
-    "inquirer": "^6.2.2"
+    "inquirer": "^6.2.2",
+    "minimist": "^1.2.0"
   },
   "devDependencies": {
     "@types/inquirer": "0.0.44",
     "@types/jest": "~22.2.3",
     "@types/lodash": "^4.14.110",
+    "@types/minimist": "^1.2.0",
     "@types/moment": "^2.13.0",
     "@types/node": "~8.10.18",
     "axios": "^0.18.0",
