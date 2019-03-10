@@ -2,6 +2,7 @@
 
 import { showWords } from './show-words'
 import { translate } from './translate-text'
+import { getPhrase } from './get-phrase'
 
 const usage: string =
 `    usage:          "npm run cli -- <<command>> ...args"
@@ -12,6 +13,7 @@ const usage: string =
         "help":         show usage info
         "show-words":   show words
         "translate":    translate text
+        "get-phrase":    get phrase with usage of given text
 `
 
 function parseCliArgs(): Promise<void> | void {
@@ -41,6 +43,11 @@ function parseCliArgs(): Promise<void> | void {
             })
         case 'translate':
             return translate({
+                ...argv,
+                _: undefined
+            })
+        case 'get-phrase':
+            return getPhrase({
                 ...argv,
                 _: undefined
             })
