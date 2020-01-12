@@ -22,9 +22,5 @@ export async function getPhrase(argv: any): Promise<void> {
     const result: Phrase[] = await new FrazeItPhrasesService(config.frazeItApiKey)
         .getPhrases(argv.text)
 
-    console.log(`
-        query: ${argv.text}
-        phrases: 
-            ${result.map(r => `${r.src}: ${r.phrase}`).join('\n            ')}
-    `)
+    console.log(`${result.map(r => `${r.phrase} (${r.src})`).join('\n')}`)
 }
