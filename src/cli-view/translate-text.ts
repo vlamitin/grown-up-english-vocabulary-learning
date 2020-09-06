@@ -1,7 +1,6 @@
-import { isNil } from 'lodash'
 import { config } from '../config/config'
-import { YandexTranslateService } from '../words-translator/yandex-translate'
 import { TranslationResult } from '../words-translator/translator'
+import { RapidapiGoogleTranslateService } from '../words-translator/rapidapi-google-translate'
 
 const usage: string =
     `    usage:          "npm run cli -- translate ...args"
@@ -19,7 +18,7 @@ export async function translate(argv: any): Promise<void> {
     }
 
     await config.load()
-    const result: TranslationResult = await new YandexTranslateService(config.yandexApiKey)
+    const result: TranslationResult = await new RapidapiGoogleTranslateService(config.rapidapiKey)
         .enToRus(argv.text)
 
     console.log(`

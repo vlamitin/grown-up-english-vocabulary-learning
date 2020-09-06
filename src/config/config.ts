@@ -7,6 +7,7 @@ const CONFIG_PATH: string = path.resolve(__dirname, '../../../resources/config.j
 class Config {
     yandexApiKey: string
     frazeItApiKey: string
+    rapidapiKey: string
 
     load = async (): Promise<void> => {
         return new Promise<WordsSource>(resolve => {
@@ -17,6 +18,7 @@ class Config {
             .then((loadedConfig: any) => {
                 this.yandexApiKey = loadedConfig.yandexApiKey
                 this.frazeItApiKey = loadedConfig.frazeItApiKey
+                this.rapidapiKey = loadedConfig.rapidapiKey
             })
     }
 

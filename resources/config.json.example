@@ -1,4 +1,5 @@
 {
   "yandexApiKey": "enter_valid_key_here",
-  "frazeItApiKey": "enter_valid_key_here"
+  "frazeItApiKey": "enter_valid_key_here",
+  "rapidapiKey": "enter_valid_key_here"
 }
