@@ -6,6 +6,8 @@ const CONFIG_PATH: string = path.resolve(__dirname, '../../../resources/config.j
 
 class Config {
     yandexApiKey: string
+    yandexCloudIamToken: string
+    yandexCloudFolderId: string
     frazeItApiKey: string
     rapidapiKey: string
 
@@ -17,6 +19,8 @@ class Config {
         })
             .then((loadedConfig: any) => {
                 this.yandexApiKey = loadedConfig.yandexApiKey
+                this.yandexCloudIamToken = loadedConfig.yandexCloudIamToken
+                this.yandexCloudFolderId = loadedConfig.yandexCloudFolderId
                 this.frazeItApiKey = loadedConfig.frazeItApiKey
                 this.rapidapiKey = loadedConfig.rapidapiKey
             })

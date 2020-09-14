@@ -1,6 +1,6 @@
 import { config } from '../config/config'
 import { TranslationResult } from '../words-translator/translator'
-import { RapidapiGoogleTranslateService } from '../words-translator/rapidapi-google-translate'
+import { YandexCloudTranslate } from '../words-translator/yandex-cloud-translate'
 
 const usage: string =
     `    usage:          "npm run cli -- translate ...args"
@@ -18,7 +18,10 @@ export async function translate(argv: any): Promise<void> {
     }
 
     await config.load()
-    const result: TranslationResult = await new RapidapiGoogleTranslateService(config.rapidapiKey)
+    const result: TranslationResult = await new YandexCloudTranslate(
+        config.yandexCloudIamToken,
+        config.yandexCloudFolderId,
+    )
         .enToRus(argv.text)
 
     console.log(`

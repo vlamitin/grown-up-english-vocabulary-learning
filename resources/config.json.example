@@ -1,5 +1,7 @@
 {
   "yandexApiKey": "enter_valid_key_here",
+  "yandexCloudIamToken": "enter_valid_token_here",
+  "yandexCloudFolderId": "enter_valid_id_here",
   "frazeItApiKey": "enter_valid_key_here",
   "rapidapiKey": "enter_valid_key_here"
 }
