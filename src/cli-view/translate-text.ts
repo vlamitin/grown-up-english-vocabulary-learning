@@ -19,7 +19,7 @@ export async function translate(argv: any): Promise<void> {
 
     await config.load()
     const result: TranslationResult = await new YandexCloudTranslate(
-        config.yandexCloudIamToken,
+        config.yandexCloudApiKey,
         config.yandexCloudFolderId,
     )
         .enToRus(argv.text)

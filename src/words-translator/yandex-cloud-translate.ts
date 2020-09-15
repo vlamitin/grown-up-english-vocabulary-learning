@@ -4,11 +4,11 @@ import { TranslationResult, Translator } from './translator'
 
 export class YandexCloudTranslate implements Translator {
 
-    yandexCloudIamToken: string
+    yandexCloudApiKey: string
     yandexCloudFolderId: string
 
-    constructor(yandexCloudIamToken: string, yandexCloudFolderId: string) {
-        this.yandexCloudIamToken = yandexCloudIamToken
+    constructor(yandexCloudApiKey: string, yandexCloudFolderId: string) {
+        this.yandexCloudApiKey = yandexCloudApiKey
         this.yandexCloudFolderId = yandexCloudFolderId
     }
 
@@ -19,7 +19,7 @@ export class YandexCloudTranslate implements Translator {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${this.yandexCloudIamToken}`,
+                    'Authorization': `Api-Key ${this.yandexCloudApiKey}`,
                 },
                 data: {
                     folder_id: this.yandexCloudFolderId,
