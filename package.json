@@ -39,7 +39,7 @@
   "dependencies": {
     "commander": "^2.19.0",
     "inquirer": "^6.2.2",
-    "minimist": "^1.2.0"
+    "minimist": "^1.2.3"
   },
   "devDependencies": {
     "@types/inquirer": "0.0.44",
