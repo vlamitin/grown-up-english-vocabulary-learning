@@ -23,7 +23,24 @@ export class FrazeItPhrasesService implements PhraseSupplier {
         } catch (error) {
             console.error(error)
         }
-
     }
 
+    getPhrasesFr = async (frText: string): Promise<Phrase[]> => {
+        const url: string = 'https://fraze.it/api/phrase'
+            + `/${frText.trim().split(' ').join('+')}`
+            + `/fr`
+            + `/1`
+            + `/no`
+            + `/${this.apiKey}`
+
+        try {
+            let response: AxiosResponse = await axios.get(url)
+            if (typeof response.data === "string") {
+                throw new Error(response.data)
+            }
+            return response.data.results
+        } catch (error) {
+            console.error(error)
+        }
+    }
 }

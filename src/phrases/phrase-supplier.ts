@@ -6,4 +6,5 @@ export interface Phrase {
 
 export interface PhraseSupplier {
     getPhrases: (enText: string) => Promise<Phrase[]>
+    getPhrasesFr: (frText: string) => Promise<Phrase[]>
 }
