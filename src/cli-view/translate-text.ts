@@ -31,3 +31,24 @@ export async function translate(argv: any): Promise<void> {
 ${argv.text}
 ${result.results.join(', ')}`)
 }
+
+export async function translateFr(argv: any): Promise<void> {
+    if (argv.h) {
+        console.log(usage)
+        return process.exit(0)
+    }
+
+    await config.load()
+    const result: TranslationResult = await new YandexCloudTranslate(
+        config.yandexCloudApiKey,
+        config.yandexCloudFolderId,
+    )
+        .frToEn(argv.text)
+
+    console.log(`
+(!) ${result.legalInfo.text}
+(!) see ${result.legalInfo.link}
+
+${argv.text}
+${result.results.join(', ')}`)
+}

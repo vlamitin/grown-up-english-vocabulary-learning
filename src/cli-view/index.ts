@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import { showWords } from './show-words'
-import { translate } from './translate-text'
+import { translate, translateFr } from './translate-text'
 import { getPhrase } from './get-phrase'
 import { LearnNew } from './learn-new'
 import {PhraseFromWords} from './phrase-from-words'
@@ -12,12 +12,13 @@ const usage: string =
     example:        "npm run cli -- show-words -f 100 -t 200" 
     
     commands:
-        "help":         show usage info
-        "show-words":   show words
-        "translate":    translate text
-        "get-phrase":   get phrase with usage of given text
-        "phrase-from-words":   get phrase with translation from given text
-        "learn-new":    learn new words
+        "help":               show usage info
+        "show-words":         show words
+        "translate":          translates en text to ru
+        "translate-fr":       translates fr text to en
+        "get-phrase":         get phrase with usage of given text
+        "phrase-from-words":  get phrase with translation from given text
+        "learn-new":          learn new words
 `
 
 function parseCliArgs(): Promise<void> | void {
@@ -47,6 +48,11 @@ function parseCliArgs(): Promise<void> | void {
             })
         case 'translate':
             return translate({
+                ...argv,
+                _: undefined
+            })
+        case 'translate-fr':
+            return translateFr({
                 ...argv,
                 _: undefined
             })
